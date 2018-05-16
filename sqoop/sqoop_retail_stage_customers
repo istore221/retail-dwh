@@ -22,10 +22,10 @@ customers
 1
 
 --incremental
-append
+lastmodified
 
 --check-column
-customer_id
+updated_at
 
 --as-avrodatafile
 
