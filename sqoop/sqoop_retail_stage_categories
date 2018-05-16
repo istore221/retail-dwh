@@ -1,0 +1,33 @@
+# sqoop import -Dmapreduce.job.user.classpath.first=true --options-file sqoop_retail_stage_categories
+# sqoop job -Dmapreduce.job.user.classpath.first=true --create categories_pull -- import --options-file sqoop_retail_stage_categories
+# sqoop job --list
+# sqoop job --exec categories_pull
+
+--connect
+jdbc:mysql://sandbox-hdp.hortonworks.com/retail_db
+
+--driver
+com.mysql.jdbc.Driver
+
+--username
+root
+
+--password-file
+file:///home/maria_dev/mysqlsqoop.password
+
+--table
+categories
+
+--m
+1
+
+--incremental
+append
+
+--check-column
+category_id
+
+--as-avrodatafile
+
+--target-dir
+/user/${user.name}/warehouse/retail_edw/retail_stage/categories/imported_date=${date}

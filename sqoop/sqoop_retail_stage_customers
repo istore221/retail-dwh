@@ -1,0 +1,33 @@
+# sqoop import -Dmapreduce.job.user.classpath.first=true --options-file sqoop_retail_stage_customers
+# sqoop job -Dmapreduce.job.user.classpath.first=true --create customers_pull -- import --options-file sqoop_retail_stage_customers
+# sqoop job --list
+# sqoop job --exec customers_pull
+
+--connect
+jdbc:mysql://sandbox-hdp.hortonworks.com/retail_db
+
+--driver
+com.mysql.jdbc.Driver
+
+--username
+root
+
+--password-file
+file:///home/maria_dev/mysqlsqoop.password
+
+--table
+customers
+
+--m
+1
+
+--incremental
+append
+
+--check-column
+customer_id
+
+--as-avrodatafile
+
+--target-dir
+/user/${user.name}/warehouse/retail_edw/retail_stage/customers/imported_date=${date}
