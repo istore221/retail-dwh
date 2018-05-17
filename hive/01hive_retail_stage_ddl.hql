@@ -84,3 +84,20 @@ STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputForma
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
 LOCATION '/user/${user.name}/warehouse/retail_edw/retail_stage/orders'
 TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_orders.avsc');
+
+
+
+
+--hadoop fs -mkdir -p warehouse/retail_edw/retail_stage/order_items
+--hadoop fs -mkdir -p warehouse/retail_edw/retail_stage/avro
+--hadoop fs -copyFromLocal ~/retail_dwh/avro/retail_stage_order_items.avsc warehouse/retail_edw/retail_stage/avro/retail_stage_order_items.avsc
+
+-- ALTER TABLE order_items ADD PARTITION (imported_date='yyyy-mm-dd') OR  MSCK REPAIR TABLE order_items;
+
+CREATE EXTERNAL TABLE IF NOT EXISTS order_items
+PARTITIONED BY (imported_date STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+LOCATION '/user/${user.name}/warehouse/retail_edw/retail_stage/order_items'
+TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_order_items.avsc');
