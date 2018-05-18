@@ -19,7 +19,7 @@ USE retail_dwh;
 set hive.enforce.bucketing = true;
 set hive.enforce.sorting=true;
 
-INSERT INTO retail_dwh.dim_departments
+INSERT INTO TABLE retail_dwh.dim_departments
 SELECT stg_dep.department_id,stg_dep.department_name FROM retail_stage.departments stg_dep
 WHERE stg_dep.imported_date='2017-05-07';
 
@@ -41,8 +41,20 @@ TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail
 
 -- ALTER TABLE dim_products ADD PARTITION (imported_date='yyyy-mm-dd') OR  MSCK REPAIR TABLE dim_products;
 
+/*
+
+set hive.exec.dynamic.partition.mode=true;
+set hive.exec.dynamic.partition=nonstrict;
+
+INSERT INTO TABLE retail_dwh.dim_products PARTITION(product_category_id)
+SELECT stg_prod.product_id,stg_prod.product_name,stg_prod.product_price,stg_prod.product_category_id
+FROM retail_stage.products stg_prod
+WHERE stg_prod.imported_date='2015-05-05';
+
+*/
+
 CREATE EXTERNAL TABLE IF NOT EXISTS dim_products
-PARTITIONED BY (product_category_id INT)
+--PARTITIONED BY (product_category_id INT)
 --CLUSTERED BY (product_id) SORTED BY (product_id) INTO 256 BUCKETS
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
@@ -58,8 +70,22 @@ TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail
 
 -- ALTER TABLE dim_categories ADD PARTITION (imported_date='yyyy-mm-dd') OR  MSCK REPAIR TABLE dim_categories;
 
+
+/*
+
+set hive.exec.dynamic.partition.mode=true;
+set hive.exec.dynamic.partition=nonstrict;
+
+INSERT INTO TABLE retail_dwh.dim_categories  PARTITION(category_department_id)
+SELECT stg_cat.category_id,stg_cat.category_name,stg_cat.category_department_id
+FROM retail_stage.categories stg_cat
+WHERE stg_cat.imported_date='2017-05-07';
+
+
+*/
+
 CREATE EXTERNAL TABLE IF NOT EXISTS dim_categories
-PARTITIONED BY (category_department_id INT)
+--PARTITIONED BY (category_department_id INT)
 --CLUSTERED BY (category_id) SORTED BY (category_id) INTO 256 BUCKETS
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'

@@ -1,0 +1,50 @@
+<!-- hadoop fs -mkdir -p warehouse/retail_edw/share/workflows  -->
+<!-- copy sqoop-site.xml to above path -->
+
+<workflow-app name="online-store-wf"
+	xmlns="uri:oozie:workflow:0.5">
+	<start to="forkingSqoopImports"/>
+
+	<fork name="forkingSqoopImports">
+        <path start="sqoopImportDepartments"/>
+        <path start="sqoopImportCategories"/>
+  </fork>
+
+
+	<action name="sqoopImportDepartments">
+		<sqoop
+			xmlns="uri:oozie:sqoop-action:0.2">
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/sqoop-site.xml</job-xml>
+			<arg>job</arg>
+			<arg>--exec</arg>
+			<arg>departments_pull</arg>
+		</sqoop>
+		<ok to="joining"/>
+		<error to="Kill"/>
+	</action>
+
+	<action name="sqoopImportCategories">
+		<sqoop
+			xmlns="uri:oozie:sqoop-action:0.2">
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/sqoop-site.xml</job-xml>
+			<arg>job</arg>
+			<arg>--exec</arg>
+			<arg>categories_pull</arg>
+		</sqoop>
+		<ok to="joining"/>
+		<error to="Kill"/>
+	</action>
+
+	<join name="joining" to="end"/>
+
+
+
+	<kill name="Kill">
+		<message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+	</kill>
+	<end name="end"/>
+</workflow-app>

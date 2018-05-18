@@ -1,7 +1,10 @@
 # sqoop import -Dmapreduce.job.user.classpath.first=true --options-file sqoop_retail_stage_departments
 # sqoop job -Dmapreduce.job.user.classpath.first=true --create departments_pull -- import --options-file sqoop_retail_stage_departments
+# sqoop job -Dmapreduce.job.user.classpath.first=true --meta-connect "jdbc:mysql://sandbox-hdp.hortonworks.com/sqoop?user=root&password=hadoop" --create departments_pull -- import --options-file sqoop_import
+# sqoop job --meta-connect jdbc:mysql://sandbox-hdp.hortonworks.com/sqoop?user=root&password=hadoop --exec departments_pull
 # sqoop job --list
 # sqoop job --exec departments_pull
+
 
 --connect
 jdbc:mysql://sandbox-hdp.hortonworks.com/retail_db
@@ -12,8 +15,9 @@ com.mysql.jdbc.Driver
 --username
 root
 
+#overide when run ->   sqoop job --exec departments_pull -- --password-file xxxxxxx
 --password-file
-file:///home/maria_dev/mysqlsqoop.password
+hdfs://sandbox-hdp.hortonworks.com:8020/user/maria_dev/warehouse/retail_edw/share/mysqlsqoop.password
 
 --table
 departments
@@ -29,5 +33,6 @@ department_id
 
 --as-avrodatafile
 
+#overide when run -> sqoop job --exec departments_pull -- --target-dir xxxxxxx
 --target-dir
 /user/${user.name}/warehouse/retail_edw/retail_stage/departments/imported_date=${date}

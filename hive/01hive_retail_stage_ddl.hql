@@ -8,7 +8,7 @@ USE retail_stage;
 -- hive.exec.dynamic.partition.mode=nonstrict
 -- hive.exec.dynamic.partition=true
 
---hadoop fs -mkdir -p warehouse/retail_edw/retail_stage/products
+--hadoop fs -mkdir -p warehouse/retail_edw/retail_stage/departments
 --hadoop fs -mkdir -p warehouse/retail_edw/retail_stage/avro
 --hadoop fs -copyFromLocal ~/retail_dwh/avro/retail_stage_departments.avsc warehouse/retail_edw/retail_stage/avro/retail_stage_departments.avsc
 

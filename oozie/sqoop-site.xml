@@ -1,0 +1,47 @@
+<configuration>
+
+  <property>
+    <name>atlas.cluster.name</name>
+    <value>Sandbox</value>
+  </property>
+
+  <property>
+    <name>sqoop.job.data.publish.class</name>
+    <value>org.apache.atlas.sqoop.hook.SqoopHook</value>
+  </property>
+
+
+  <!-- Mysql metastore -->
+
+  <property>
+    <name>sqoop.metastore.client.enable.autoconnect</name>
+    <value>true</value>
+    <description>If true, Sqoop will connect to a local metastore
+      for job management when no other metastore arguments are
+      provided.
+    </description>
+  </property>
+
+  <property>
+    <name>sqoop.metastore.client.autoconnect.url</name>
+    <value>jdbc:mysql://sandbox-hdp.hortonworks.com/sqoop?createDatabaseIfNotExist=true</value>
+  </property>
+
+  <property>
+    <name>sqoop.metastore.client.autoconnect.username</name>
+    <value>root</value>
+  </property>
+
+  <property>
+    <name>sqoop.metastore.client.autoconnect.password</name>
+    <value>hadoop</value>
+  </property>
+
+  <property>
+    <name>sqoop.metastore.client.record.password</name>
+    <value>true</value>
+    <description>Note that you have to set to true if you are executing saved jobs via Oozie because Sqoop cannot prompt the user to enter passwords while being executed as Oozie tasks.</description>
+  </property>
+
+
+</configuration>

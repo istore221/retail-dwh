@@ -13,7 +13,7 @@ com.mysql.jdbc.Driver
 root
 
 --password-file
-file:///home/maria_dev/mysqlsqoop.password
+hdfs://sandbox-hdp.hortonworks.com:8020/user/maria_dev/warehouse/retail_edw/share/mysqlsqoop.password
 
 --table
 products
