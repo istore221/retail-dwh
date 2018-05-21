@@ -2,7 +2,7 @@
 // WARNING: This class is AUTO-GENERATED. Modify at your own risk.
 //
 // Debug information:
-// Generated date: Wed May 16 09:18:28 UTC 2018
+// Generated date: Mon May 21 09:06:09 UTC 2018
 // For connector: org.apache.sqoop.manager.GenericJdbcManager
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.Text;
@@ -49,7 +49,7 @@ public class orders extends SqoopRecord  implements DBWritable, Writable {
     setters.put("order_date", new FieldSetterCommand() {
       @Override
       public void setField(Object value) {
-        order_date = (java.sql.Timestamp)value;
+        order_date = (String)value;
       }
     });
     setters.put("order_customer_id", new FieldSetterCommand() {
@@ -79,14 +79,14 @@ public class orders extends SqoopRecord  implements DBWritable, Writable {
     this.order_id = order_id;
     return this;
   }
-  private java.sql.Timestamp order_date;
-  public java.sql.Timestamp get_order_date() {
+  private String order_date;
+  public String get_order_date() {
     return order_date;
   }
-  public void set_order_date(java.sql.Timestamp order_date) {
+  public void set_order_date(String order_date) {
     this.order_date = order_date;
   }
-  public orders with_order_date(java.sql.Timestamp order_date) {
+  public orders with_order_date(String order_date) {
     this.order_date = order_date;
     return this;
   }
@@ -145,13 +145,13 @@ public class orders extends SqoopRecord  implements DBWritable, Writable {
   public void readFields(ResultSet __dbResults) throws SQLException {
     this.__cur_result_set = __dbResults;
     this.order_id = JdbcWritableBridge.readInteger(1, __dbResults);
-    this.order_date = JdbcWritableBridge.readTimestamp(2, __dbResults);
+    this.order_date = JdbcWritableBridge.readString(2, __dbResults);
     this.order_customer_id = JdbcWritableBridge.readInteger(3, __dbResults);
     this.order_status = JdbcWritableBridge.readString(4, __dbResults);
   }
   public void readFields0(ResultSet __dbResults) throws SQLException {
     this.order_id = JdbcWritableBridge.readInteger(1, __dbResults);
-    this.order_date = JdbcWritableBridge.readTimestamp(2, __dbResults);
+    this.order_date = JdbcWritableBridge.readString(2, __dbResults);
     this.order_customer_id = JdbcWritableBridge.readInteger(3, __dbResults);
     this.order_status = JdbcWritableBridge.readString(4, __dbResults);
   }
@@ -167,14 +167,14 @@ public class orders extends SqoopRecord  implements DBWritable, Writable {
 
   public int write(PreparedStatement __dbStmt, int __off) throws SQLException {
     JdbcWritableBridge.writeInteger(order_id, 1 + __off, 4, __dbStmt);
-    JdbcWritableBridge.writeTimestamp(order_date, 2 + __off, 93, __dbStmt);
+    JdbcWritableBridge.writeString(order_date, 2 + __off, 93, __dbStmt);
     JdbcWritableBridge.writeInteger(order_customer_id, 3 + __off, 4, __dbStmt);
     JdbcWritableBridge.writeString(order_status, 4 + __off, 12, __dbStmt);
     return 4;
   }
   public void write0(PreparedStatement __dbStmt, int __off) throws SQLException {
     JdbcWritableBridge.writeInteger(order_id, 1 + __off, 4, __dbStmt);
-    JdbcWritableBridge.writeTimestamp(order_date, 2 + __off, 93, __dbStmt);
+    JdbcWritableBridge.writeString(order_date, 2 + __off, 93, __dbStmt);
     JdbcWritableBridge.writeInteger(order_customer_id, 3 + __off, 4, __dbStmt);
     JdbcWritableBridge.writeString(order_status, 4 + __off, 12, __dbStmt);
   }
@@ -189,8 +189,7 @@ this.readFields0(__dataIn);  }
     if (__dataIn.readBoolean()) {
         this.order_date = null;
     } else {
-    this.order_date = new Timestamp(__dataIn.readLong());
-    this.order_date.setNanos(__dataIn.readInt());
+    this.order_date = Text.readString(__dataIn);
     }
     if (__dataIn.readBoolean()) {
         this.order_customer_id = null;
@@ -214,8 +213,7 @@ this.readFields0(__dataIn);  }
         __dataOut.writeBoolean(true);
     } else {
         __dataOut.writeBoolean(false);
-    __dataOut.writeLong(this.order_date.getTime());
-    __dataOut.writeInt(this.order_date.getNanos());
+    Text.writeString(__dataOut, order_date);
     }
     if (null == this.order_customer_id) {
         __dataOut.writeBoolean(true);
@@ -241,8 +239,7 @@ this.readFields0(__dataIn);  }
         __dataOut.writeBoolean(true);
     } else {
         __dataOut.writeBoolean(false);
-    __dataOut.writeLong(this.order_date.getTime());
-    __dataOut.writeInt(this.order_date.getNanos());
+    Text.writeString(__dataOut, order_date);
     }
     if (null == this.order_customer_id) {
         __dataOut.writeBoolean(true);
@@ -272,7 +269,7 @@ this.readFields0(__dataIn);  }
     char fieldDelim = delimiters.getFieldsTerminatedBy();
     __sb.append(FieldFormatter.escapeAndEnclose(order_id==null?"null":"" + order_id, delimiters));
     __sb.append(fieldDelim);
-    __sb.append(FieldFormatter.escapeAndEnclose(order_date==null?"null":"" + order_date, delimiters));
+    __sb.append(FieldFormatter.escapeAndEnclose(order_date==null?"null":order_date, delimiters));
     __sb.append(fieldDelim);
     __sb.append(FieldFormatter.escapeAndEnclose(order_customer_id==null?"null":"" + order_customer_id, delimiters));
     __sb.append(fieldDelim);
@@ -285,7 +282,7 @@ this.readFields0(__dataIn);  }
   public void toString0(DelimiterSet delimiters, StringBuilder __sb, char fieldDelim) {
     __sb.append(FieldFormatter.escapeAndEnclose(order_id==null?"null":"" + order_id, delimiters));
     __sb.append(fieldDelim);
-    __sb.append(FieldFormatter.escapeAndEnclose(order_date==null?"null":"" + order_date, delimiters));
+    __sb.append(FieldFormatter.escapeAndEnclose(order_date==null?"null":order_date, delimiters));
     __sb.append(fieldDelim);
     __sb.append(FieldFormatter.escapeAndEnclose(order_customer_id==null?"null":"" + order_customer_id, delimiters));
     __sb.append(fieldDelim);
@@ -351,8 +348,8 @@ this.readFields0(__dataIn);  }
     }
 
     __cur_str = __it.next();
-    if (__cur_str.equals("null") || __cur_str.length() == 0) { this.order_date = null; } else {
-      this.order_date = java.sql.Timestamp.valueOf(__cur_str);
+    if (__cur_str.equals("null")) { this.order_date = null; } else {
+      this.order_date = __cur_str;
     }
 
     __cur_str = __it.next();
@@ -376,8 +373,8 @@ this.readFields0(__dataIn);  }
     }
 
     __cur_str = __it.next();
-    if (__cur_str.equals("null") || __cur_str.length() == 0) { this.order_date = null; } else {
-      this.order_date = java.sql.Timestamp.valueOf(__cur_str);
+    if (__cur_str.equals("null")) { this.order_date = null; } else {
+      this.order_date = __cur_str;
     }
 
     __cur_str = __it.next();
@@ -394,12 +391,10 @@ this.readFields0(__dataIn);  }
 
   public Object clone() throws CloneNotSupportedException {
     orders o = (orders) super.clone();
-    o.order_date = (o.order_date != null) ? (java.sql.Timestamp) o.order_date.clone() : null;
     return o;
   }
 
   public void clone0(orders o) throws CloneNotSupportedException {
-    o.order_date = (o.order_date != null) ? (java.sql.Timestamp) o.order_date.clone() : null;
   }
 
   public Map<String, Object> getFieldMap() {

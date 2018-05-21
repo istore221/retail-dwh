@@ -10,7 +10,7 @@
     "sqlType" : "4"
   }, {
     "name" : "order_date",
-    "type" : [ "null", "long" ],
+    "type" : [ "null", "string" ],
     "default" : null,
     "columnName" : "order_date",
     "sqlType" : "93"

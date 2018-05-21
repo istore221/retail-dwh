@@ -21,6 +21,9 @@ orders
 --m
 1
 
+--map-column-java
+order_date=String
+
 --incremental
 append
 
