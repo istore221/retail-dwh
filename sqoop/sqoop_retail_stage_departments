@@ -35,4 +35,4 @@ department_id
 
 #overide when run -> sqoop job --exec departments_pull -- --target-dir xxxxxxx
 --target-dir
-/user/${user.name}/warehouse/retail_edw/retail_stage/departments/imported_date=${date}
+/user/xxx/warehouse/retail_edw/retail_stage/departments/imported_date=xxx

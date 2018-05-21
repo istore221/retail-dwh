@@ -33,4 +33,4 @@ product_id
 --as-avrodatafile
 
 --target-dir
-/user/${user.name}/warehouse/retail_edw/retail_stage/products/imported_date=${date}
+/user/xxx/warehouse/retail_edw/retail_stage/products/imported_date=xxx

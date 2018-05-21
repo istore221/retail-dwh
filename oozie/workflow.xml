@@ -8,6 +8,8 @@
 	<fork name="forkingSqoopImports">
         <path start="sqoopImportDepartments"/>
         <path start="sqoopImportCategories"/>
+				<path start="sqoopImportProducts"/>
+				<path start="sqoopImportCustomers"/>
   </fork>
 
 
@@ -20,6 +22,9 @@
 			<arg>job</arg>
 			<arg>--exec</arg>
 			<arg>departments_pull</arg>
+			<arg>--</arg>
+			<arg>--target-dir</arg>
+			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/departments/imported_date=${date}</arg>
 		</sqoop>
 		<ok to="joining"/>
 		<error to="Kill"/>
@@ -34,13 +39,50 @@
 			<arg>job</arg>
 			<arg>--exec</arg>
 			<arg>categories_pull</arg>
+			<arg>--</arg>
+			<arg>--target-dir</arg>
+			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/departments/imported_date=${date}</arg>
+		</sqoop>
+		<ok to="joining"/>
+		<error to="Kill"/>
+	</action>
+
+
+	<action name="sqoopImportProducts">
+		<sqoop
+			xmlns="uri:oozie:sqoop-action:0.2">
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/sqoop-site.xml</job-xml>
+			<arg>job</arg>
+			<arg>--exec</arg>
+			<arg>products_pull</arg>
+			<arg>--</arg>
+			<arg>--target-dir</arg>
+			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/departments/imported_date=${date}</arg>
+		</sqoop>
+		<ok to="joining"/>
+		<error to="Kill"/>
+	</action>
+
+	<action name="sqoopImportCustomers">
+		<sqoop
+			xmlns="uri:oozie:sqoop-action:0.2">
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/sqoop-site.xml</job-xml>
+			<arg>job</arg>
+			<arg>--exec</arg>
+			<arg>customers_pull</arg>
+			<arg>--</arg>
+			<arg>--target-dir</arg>
+			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/departments/imported_date=${date}</arg>
 		</sqoop>
 		<ok to="joining"/>
 		<error to="Kill"/>
 	</action>
 
 	<join name="joining" to="end"/>
-
 
 
 	<kill name="Kill">

@@ -22,12 +22,12 @@ customers
 1
 
 --incremental
-lastmodified
+append
 
 --check-column
-updated_at
+customer_id
 
 --as-avrodatafile
 
 --target-dir
-/user/${user.name}/warehouse/retail_edw/retail_stage/customers/imported_date=${date}
+/user/xxx/warehouse/retail_edw/retail_stage/customers/imported_date=xxx
