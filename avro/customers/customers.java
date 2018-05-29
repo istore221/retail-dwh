@@ -1,8 +1,8 @@
-// ORM class for table 'orders'
+// ORM class for table 'customers'
 // WARNING: This class is AUTO-GENERATED. Modify at your own risk.
 //
 // Debug information:
-// Generated date: Wed May 16 09:18:28 UTC 2018
+// Generated date: Tue May 29 10:05:29 UTC 2018
 // For connector: org.apache.sqoop.manager.GenericJdbcManager
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.Text;
@@ -34,126 +34,231 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-public class orders extends SqoopRecord  implements DBWritable, Writable {
+public class customers extends SqoopRecord  implements DBWritable, Writable {
   private final int PROTOCOL_VERSION = 3;
   public int getClassFormatVersion() { return PROTOCOL_VERSION; }
   public static interface FieldSetterCommand {    void setField(Object value);  }  protected ResultSet __cur_result_set;
   private Map<String, FieldSetterCommand> setters = new HashMap<String, FieldSetterCommand>();
   private void init0() {
-    setters.put("order_id", new FieldSetterCommand() {
+    setters.put("customer_id", new FieldSetterCommand() {
       @Override
       public void setField(Object value) {
-        order_id = (Integer)value;
+        customer_id = (Integer)value;
       }
     });
-    setters.put("order_date", new FieldSetterCommand() {
+    setters.put("customer_fname", new FieldSetterCommand() {
       @Override
       public void setField(Object value) {
-        order_date = (java.sql.Timestamp)value;
+        customer_fname = (String)value;
       }
     });
-    setters.put("order_customer_id", new FieldSetterCommand() {
+    setters.put("customer_lname", new FieldSetterCommand() {
       @Override
       public void setField(Object value) {
-        order_customer_id = (Integer)value;
+        customer_lname = (String)value;
       }
     });
-    setters.put("order_status", new FieldSetterCommand() {
+    setters.put("customer_email", new FieldSetterCommand() {
       @Override
       public void setField(Object value) {
-        order_status = (String)value;
+        customer_email = (String)value;
+      }
+    });
+    setters.put("customer_password", new FieldSetterCommand() {
+      @Override
+      public void setField(Object value) {
+        customer_password = (String)value;
+      }
+    });
+    setters.put("customer_street", new FieldSetterCommand() {
+      @Override
+      public void setField(Object value) {
+        customer_street = (String)value;
+      }
+    });
+    setters.put("customer_city", new FieldSetterCommand() {
+      @Override
+      public void setField(Object value) {
+        customer_city = (String)value;
+      }
+    });
+    setters.put("customer_state", new FieldSetterCommand() {
+      @Override
+      public void setField(Object value) {
+        customer_state = (String)value;
+      }
+    });
+    setters.put("customer_zipcode", new FieldSetterCommand() {
+      @Override
+      public void setField(Object value) {
+        customer_zipcode = (String)value;
       }
     });
   }
-  public orders() {
+  public customers() {
     init0();
   }
-  private Integer order_id;
-  public Integer get_order_id() {
-    return order_id;
+  private Integer customer_id;
+  public Integer get_customer_id() {
+    return customer_id;
   }
-  public void set_order_id(Integer order_id) {
-    this.order_id = order_id;
+  public void set_customer_id(Integer customer_id) {
+    this.customer_id = customer_id;
   }
-  public orders with_order_id(Integer order_id) {
-    this.order_id = order_id;
+  public customers with_customer_id(Integer customer_id) {
+    this.customer_id = customer_id;
     return this;
   }
-  private java.sql.Timestamp order_date;
-  public java.sql.Timestamp get_order_date() {
-    return order_date;
+  private String customer_fname;
+  public String get_customer_fname() {
+    return customer_fname;
   }
-  public void set_order_date(java.sql.Timestamp order_date) {
-    this.order_date = order_date;
+  public void set_customer_fname(String customer_fname) {
+    this.customer_fname = customer_fname;
   }
-  public orders with_order_date(java.sql.Timestamp order_date) {
-    this.order_date = order_date;
+  public customers with_customer_fname(String customer_fname) {
+    this.customer_fname = customer_fname;
     return this;
   }
-  private Integer order_customer_id;
-  public Integer get_order_customer_id() {
-    return order_customer_id;
+  private String customer_lname;
+  public String get_customer_lname() {
+    return customer_lname;
   }
-  public void set_order_customer_id(Integer order_customer_id) {
-    this.order_customer_id = order_customer_id;
+  public void set_customer_lname(String customer_lname) {
+    this.customer_lname = customer_lname;
   }
-  public orders with_order_customer_id(Integer order_customer_id) {
-    this.order_customer_id = order_customer_id;
+  public customers with_customer_lname(String customer_lname) {
+    this.customer_lname = customer_lname;
     return this;
   }
-  private String order_status;
-  public String get_order_status() {
-    return order_status;
+  private String customer_email;
+  public String get_customer_email() {
+    return customer_email;
   }
-  public void set_order_status(String order_status) {
-    this.order_status = order_status;
+  public void set_customer_email(String customer_email) {
+    this.customer_email = customer_email;
   }
-  public orders with_order_status(String order_status) {
-    this.order_status = order_status;
+  public customers with_customer_email(String customer_email) {
+    this.customer_email = customer_email;
+    return this;
+  }
+  private String customer_password;
+  public String get_customer_password() {
+    return customer_password;
+  }
+  public void set_customer_password(String customer_password) {
+    this.customer_password = customer_password;
+  }
+  public customers with_customer_password(String customer_password) {
+    this.customer_password = customer_password;
+    return this;
+  }
+  private String customer_street;
+  public String get_customer_street() {
+    return customer_street;
+  }
+  public void set_customer_street(String customer_street) {
+    this.customer_street = customer_street;
+  }
+  public customers with_customer_street(String customer_street) {
+    this.customer_street = customer_street;
+    return this;
+  }
+  private String customer_city;
+  public String get_customer_city() {
+    return customer_city;
+  }
+  public void set_customer_city(String customer_city) {
+    this.customer_city = customer_city;
+  }
+  public customers with_customer_city(String customer_city) {
+    this.customer_city = customer_city;
+    return this;
+  }
+  private String customer_state;
+  public String get_customer_state() {
+    return customer_state;
+  }
+  public void set_customer_state(String customer_state) {
+    this.customer_state = customer_state;
+  }
+  public customers with_customer_state(String customer_state) {
+    this.customer_state = customer_state;
+    return this;
+  }
+  private String customer_zipcode;
+  public String get_customer_zipcode() {
+    return customer_zipcode;
+  }
+  public void set_customer_zipcode(String customer_zipcode) {
+    this.customer_zipcode = customer_zipcode;
+  }
+  public customers with_customer_zipcode(String customer_zipcode) {
+    this.customer_zipcode = customer_zipcode;
     return this;
   }
   public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof orders)) {
+    if (!(o instanceof customers)) {
       return false;
     }
-    orders that = (orders) o;
+    customers that = (customers) o;
     boolean equal = true;
-    equal = equal && (this.order_id == null ? that.order_id == null : this.order_id.equals(that.order_id));
-    equal = equal && (this.order_date == null ? that.order_date == null : this.order_date.equals(that.order_date));
-    equal = equal && (this.order_customer_id == null ? that.order_customer_id == null : this.order_customer_id.equals(that.order_customer_id));
-    equal = equal && (this.order_status == null ? that.order_status == null : this.order_status.equals(that.order_status));
+    equal = equal && (this.customer_id == null ? that.customer_id == null : this.customer_id.equals(that.customer_id));
+    equal = equal && (this.customer_fname == null ? that.customer_fname == null : this.customer_fname.equals(that.customer_fname));
+    equal = equal && (this.customer_lname == null ? that.customer_lname == null : this.customer_lname.equals(that.customer_lname));
+    equal = equal && (this.customer_email == null ? that.customer_email == null : this.customer_email.equals(that.customer_email));
+    equal = equal && (this.customer_password == null ? that.customer_password == null : this.customer_password.equals(that.customer_password));
+    equal = equal && (this.customer_street == null ? that.customer_street == null : this.customer_street.equals(that.customer_street));
+    equal = equal && (this.customer_city == null ? that.customer_city == null : this.customer_city.equals(that.customer_city));
+    equal = equal && (this.customer_state == null ? that.customer_state == null : this.customer_state.equals(that.customer_state));
+    equal = equal && (this.customer_zipcode == null ? that.customer_zipcode == null : this.customer_zipcode.equals(that.customer_zipcode));
     return equal;
   }
   public boolean equals0(Object o) {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof orders)) {
+    if (!(o instanceof customers)) {
       return false;
     }
-    orders that = (orders) o;
+    customers that = (customers) o;
     boolean equal = true;
-    equal = equal && (this.order_id == null ? that.order_id == null : this.order_id.equals(that.order_id));
-    equal = equal && (this.order_date == null ? that.order_date == null : this.order_date.equals(that.order_date));
-    equal = equal && (this.order_customer_id == null ? that.order_customer_id == null : this.order_customer_id.equals(that.order_customer_id));
-    equal = equal && (this.order_status == null ? that.order_status == null : this.order_status.equals(that.order_status));
+    equal = equal && (this.customer_id == null ? that.customer_id == null : this.customer_id.equals(that.customer_id));
+    equal = equal && (this.customer_fname == null ? that.customer_fname == null : this.customer_fname.equals(that.customer_fname));
+    equal = equal && (this.customer_lname == null ? that.customer_lname == null : this.customer_lname.equals(that.customer_lname));
+    equal = equal && (this.customer_email == null ? that.customer_email == null : this.customer_email.equals(that.customer_email));
+    equal = equal && (this.customer_password == null ? that.customer_password == null : this.customer_password.equals(that.customer_password));
+    equal = equal && (this.customer_street == null ? that.customer_street == null : this.customer_street.equals(that.customer_street));
+    equal = equal && (this.customer_city == null ? that.customer_city == null : this.customer_city.equals(that.customer_city));
+    equal = equal && (this.customer_state == null ? that.customer_state == null : this.customer_state.equals(that.customer_state));
+    equal = equal && (this.customer_zipcode == null ? that.customer_zipcode == null : this.customer_zipcode.equals(that.customer_zipcode));
     return equal;
   }
   public void readFields(ResultSet __dbResults) throws SQLException {
     this.__cur_result_set = __dbResults;
-    this.order_id = JdbcWritableBridge.readInteger(1, __dbResults);
-    this.order_date = JdbcWritableBridge.readTimestamp(2, __dbResults);
-    this.order_customer_id = JdbcWritableBridge.readInteger(3, __dbResults);
-    this.order_status = JdbcWritableBridge.readString(4, __dbResults);
+    this.customer_id = JdbcWritableBridge.readInteger(1, __dbResults);
+    this.customer_fname = JdbcWritableBridge.readString(2, __dbResults);
+    this.customer_lname = JdbcWritableBridge.readString(3, __dbResults);
+    this.customer_email = JdbcWritableBridge.readString(4, __dbResults);
+    this.customer_password = JdbcWritableBridge.readString(5, __dbResults);
+    this.customer_street = JdbcWritableBridge.readString(6, __dbResults);
+    this.customer_city = JdbcWritableBridge.readString(7, __dbResults);
+    this.customer_state = JdbcWritableBridge.readString(8, __dbResults);
+    this.customer_zipcode = JdbcWritableBridge.readString(9, __dbResults);
   }
   public void readFields0(ResultSet __dbResults) throws SQLException {
-    this.order_id = JdbcWritableBridge.readInteger(1, __dbResults);
-    this.order_date = JdbcWritableBridge.readTimestamp(2, __dbResults);
-    this.order_customer_id = JdbcWritableBridge.readInteger(3, __dbResults);
-    this.order_status = JdbcWritableBridge.readString(4, __dbResults);
+    this.customer_id = JdbcWritableBridge.readInteger(1, __dbResults);
+    this.customer_fname = JdbcWritableBridge.readString(2, __dbResults);
+    this.customer_lname = JdbcWritableBridge.readString(3, __dbResults);
+    this.customer_email = JdbcWritableBridge.readString(4, __dbResults);
+    this.customer_password = JdbcWritableBridge.readString(5, __dbResults);
+    this.customer_street = JdbcWritableBridge.readString(6, __dbResults);
+    this.customer_city = JdbcWritableBridge.readString(7, __dbResults);
+    this.customer_state = JdbcWritableBridge.readString(8, __dbResults);
+    this.customer_zipcode = JdbcWritableBridge.readString(9, __dbResults);
   }
   public void loadLargeObjects(LargeObjectLoader __loader)
       throws SQLException, IOException, InterruptedException {
@@ -166,95 +271,187 @@ public class orders extends SqoopRecord  implements DBWritable, Writable {
   }
 
   public int write(PreparedStatement __dbStmt, int __off) throws SQLException {
-    JdbcWritableBridge.writeInteger(order_id, 1 + __off, 4, __dbStmt);
-    JdbcWritableBridge.writeTimestamp(order_date, 2 + __off, 93, __dbStmt);
-    JdbcWritableBridge.writeInteger(order_customer_id, 3 + __off, 4, __dbStmt);
-    JdbcWritableBridge.writeString(order_status, 4 + __off, 12, __dbStmt);
-    return 4;
+    JdbcWritableBridge.writeInteger(customer_id, 1 + __off, 4, __dbStmt);
+    JdbcWritableBridge.writeString(customer_fname, 2 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_lname, 3 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_email, 4 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_password, 5 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_street, 6 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_city, 7 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_state, 8 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_zipcode, 9 + __off, 12, __dbStmt);
+    return 9;
   }
   public void write0(PreparedStatement __dbStmt, int __off) throws SQLException {
-    JdbcWritableBridge.writeInteger(order_id, 1 + __off, 4, __dbStmt);
-    JdbcWritableBridge.writeTimestamp(order_date, 2 + __off, 93, __dbStmt);
-    JdbcWritableBridge.writeInteger(order_customer_id, 3 + __off, 4, __dbStmt);
-    JdbcWritableBridge.writeString(order_status, 4 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeInteger(customer_id, 1 + __off, 4, __dbStmt);
+    JdbcWritableBridge.writeString(customer_fname, 2 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_lname, 3 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_email, 4 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_password, 5 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_street, 6 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_city, 7 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_state, 8 + __off, 12, __dbStmt);
+    JdbcWritableBridge.writeString(customer_zipcode, 9 + __off, 12, __dbStmt);
   }
   public void readFields(DataInput __dataIn) throws IOException {
 this.readFields0(__dataIn);  }
   public void readFields0(DataInput __dataIn) throws IOException {
     if (__dataIn.readBoolean()) {
-        this.order_id = null;
+        this.customer_id = null;
     } else {
-    this.order_id = Integer.valueOf(__dataIn.readInt());
+    this.customer_id = Integer.valueOf(__dataIn.readInt());
     }
     if (__dataIn.readBoolean()) {
-        this.order_date = null;
+        this.customer_fname = null;
     } else {
-    this.order_date = new Timestamp(__dataIn.readLong());
-    this.order_date.setNanos(__dataIn.readInt());
+    this.customer_fname = Text.readString(__dataIn);
     }
     if (__dataIn.readBoolean()) {
-        this.order_customer_id = null;
+        this.customer_lname = null;
     } else {
-    this.order_customer_id = Integer.valueOf(__dataIn.readInt());
+    this.customer_lname = Text.readString(__dataIn);
     }
     if (__dataIn.readBoolean()) {
-        this.order_status = null;
+        this.customer_email = null;
     } else {
-    this.order_status = Text.readString(__dataIn);
+    this.customer_email = Text.readString(__dataIn);
+    }
+    if (__dataIn.readBoolean()) {
+        this.customer_password = null;
+    } else {
+    this.customer_password = Text.readString(__dataIn);
+    }
+    if (__dataIn.readBoolean()) {
+        this.customer_street = null;
+    } else {
+    this.customer_street = Text.readString(__dataIn);
+    }
+    if (__dataIn.readBoolean()) {
+        this.customer_city = null;
+    } else {
+    this.customer_city = Text.readString(__dataIn);
+    }
+    if (__dataIn.readBoolean()) {
+        this.customer_state = null;
+    } else {
+    this.customer_state = Text.readString(__dataIn);
+    }
+    if (__dataIn.readBoolean()) {
+        this.customer_zipcode = null;
+    } else {
+    this.customer_zipcode = Text.readString(__dataIn);
     }
   }
   public void write(DataOutput __dataOut) throws IOException {
-    if (null == this.order_id) {
+    if (null == this.customer_id) {
         __dataOut.writeBoolean(true);
     } else {
         __dataOut.writeBoolean(false);
-    __dataOut.writeInt(this.order_id);
+    __dataOut.writeInt(this.customer_id);
     }
-    if (null == this.order_date) {
+    if (null == this.customer_fname) {
         __dataOut.writeBoolean(true);
     } else {
         __dataOut.writeBoolean(false);
-    __dataOut.writeLong(this.order_date.getTime());
-    __dataOut.writeInt(this.order_date.getNanos());
+    Text.writeString(__dataOut, customer_fname);
     }
-    if (null == this.order_customer_id) {
+    if (null == this.customer_lname) {
         __dataOut.writeBoolean(true);
     } else {
         __dataOut.writeBoolean(false);
-    __dataOut.writeInt(this.order_customer_id);
+    Text.writeString(__dataOut, customer_lname);
     }
-    if (null == this.order_status) {
+    if (null == this.customer_email) {
         __dataOut.writeBoolean(true);
     } else {
         __dataOut.writeBoolean(false);
-    Text.writeString(__dataOut, order_status);
+    Text.writeString(__dataOut, customer_email);
+    }
+    if (null == this.customer_password) {
+        __dataOut.writeBoolean(true);
+    } else {
+        __dataOut.writeBoolean(false);
+    Text.writeString(__dataOut, customer_password);
+    }
+    if (null == this.customer_street) {
+        __dataOut.writeBoolean(true);
+    } else {
+        __dataOut.writeBoolean(false);
+    Text.writeString(__dataOut, customer_street);
+    }
+    if (null == this.customer_city) {
+        __dataOut.writeBoolean(true);
+    } else {
+        __dataOut.writeBoolean(false);
+    Text.writeString(__dataOut, customer_city);
+    }
+    if (null == this.customer_state) {
+        __dataOut.writeBoolean(true);
+    } else {
+        __dataOut.writeBoolean(false);
+    Text.writeString(__dataOut, customer_state);
+    }
+    if (null == this.customer_zipcode) {
+        __dataOut.writeBoolean(true);
+    } else {
+        __dataOut.writeBoolean(false);
+    Text.writeString(__dataOut, customer_zipcode);
     }
   }
   public void write0(DataOutput __dataOut) throws IOException {
-    if (null == this.order_id) {
+    if (null == this.customer_id) {
         __dataOut.writeBoolean(true);
     } else {
         __dataOut.writeBoolean(false);
-    __dataOut.writeInt(this.order_id);
+    __dataOut.writeInt(this.customer_id);
     }
-    if (null == this.order_date) {
+    if (null == this.customer_fname) {
         __dataOut.writeBoolean(true);
     } else {
         __dataOut.writeBoolean(false);
-    __dataOut.writeLong(this.order_date.getTime());
-    __dataOut.writeInt(this.order_date.getNanos());
+    Text.writeString(__dataOut, customer_fname);
     }
-    if (null == this.order_customer_id) {
+    if (null == this.customer_lname) {
         __dataOut.writeBoolean(true);
     } else {
         __dataOut.writeBoolean(false);
-    __dataOut.writeInt(this.order_customer_id);
+    Text.writeString(__dataOut, customer_lname);
     }
-    if (null == this.order_status) {
+    if (null == this.customer_email) {
         __dataOut.writeBoolean(true);
     } else {
         __dataOut.writeBoolean(false);
-    Text.writeString(__dataOut, order_status);
+    Text.writeString(__dataOut, customer_email);
+    }
+    if (null == this.customer_password) {
+        __dataOut.writeBoolean(true);
+    } else {
+        __dataOut.writeBoolean(false);
+    Text.writeString(__dataOut, customer_password);
+    }
+    if (null == this.customer_street) {
+        __dataOut.writeBoolean(true);
+    } else {
+        __dataOut.writeBoolean(false);
+    Text.writeString(__dataOut, customer_street);
+    }
+    if (null == this.customer_city) {
+        __dataOut.writeBoolean(true);
+    } else {
+        __dataOut.writeBoolean(false);
+    Text.writeString(__dataOut, customer_city);
+    }
+    if (null == this.customer_state) {
+        __dataOut.writeBoolean(true);
+    } else {
+        __dataOut.writeBoolean(false);
+    Text.writeString(__dataOut, customer_state);
+    }
+    if (null == this.customer_zipcode) {
+        __dataOut.writeBoolean(true);
+    } else {
+        __dataOut.writeBoolean(false);
+    Text.writeString(__dataOut, customer_zipcode);
     }
   }
   private static final DelimiterSet __outputDelimiters = new DelimiterSet((char) 44, (char) 10, (char) 0, (char) 0, false);
@@ -270,26 +467,46 @@ this.readFields0(__dataIn);  }
   public String toString(DelimiterSet delimiters, boolean useRecordDelim) {
     StringBuilder __sb = new StringBuilder();
     char fieldDelim = delimiters.getFieldsTerminatedBy();
-    __sb.append(FieldFormatter.escapeAndEnclose(order_id==null?"null":"" + order_id, delimiters));
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_id==null?"null":"" + customer_id, delimiters));
     __sb.append(fieldDelim);
-    __sb.append(FieldFormatter.escapeAndEnclose(order_date==null?"null":"" + order_date, delimiters));
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_fname==null?"null":customer_fname, delimiters));
     __sb.append(fieldDelim);
-    __sb.append(FieldFormatter.escapeAndEnclose(order_customer_id==null?"null":"" + order_customer_id, delimiters));
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_lname==null?"null":customer_lname, delimiters));
     __sb.append(fieldDelim);
-    __sb.append(FieldFormatter.escapeAndEnclose(order_status==null?"null":order_status, delimiters));
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_email==null?"null":customer_email, delimiters));
+    __sb.append(fieldDelim);
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_password==null?"null":customer_password, delimiters));
+    __sb.append(fieldDelim);
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_street==null?"null":customer_street, delimiters));
+    __sb.append(fieldDelim);
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_city==null?"null":customer_city, delimiters));
+    __sb.append(fieldDelim);
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_state==null?"null":customer_state, delimiters));
+    __sb.append(fieldDelim);
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_zipcode==null?"null":customer_zipcode, delimiters));
     if (useRecordDelim) {
       __sb.append(delimiters.getLinesTerminatedBy());
     }
     return __sb.toString();
   }
   public void toString0(DelimiterSet delimiters, StringBuilder __sb, char fieldDelim) {
-    __sb.append(FieldFormatter.escapeAndEnclose(order_id==null?"null":"" + order_id, delimiters));
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_id==null?"null":"" + customer_id, delimiters));
     __sb.append(fieldDelim);
-    __sb.append(FieldFormatter.escapeAndEnclose(order_date==null?"null":"" + order_date, delimiters));
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_fname==null?"null":customer_fname, delimiters));
     __sb.append(fieldDelim);
-    __sb.append(FieldFormatter.escapeAndEnclose(order_customer_id==null?"null":"" + order_customer_id, delimiters));
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_lname==null?"null":customer_lname, delimiters));
     __sb.append(fieldDelim);
-    __sb.append(FieldFormatter.escapeAndEnclose(order_status==null?"null":order_status, delimiters));
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_email==null?"null":customer_email, delimiters));
+    __sb.append(fieldDelim);
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_password==null?"null":customer_password, delimiters));
+    __sb.append(fieldDelim);
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_street==null?"null":customer_street, delimiters));
+    __sb.append(fieldDelim);
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_city==null?"null":customer_city, delimiters));
+    __sb.append(fieldDelim);
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_state==null?"null":customer_state, delimiters));
+    __sb.append(fieldDelim);
+    __sb.append(FieldFormatter.escapeAndEnclose(customer_zipcode==null?"null":customer_zipcode, delimiters));
   }
   private static final DelimiterSet __inputDelimiters = new DelimiterSet((char) 44, (char) 10, (char) 0, (char) 0, false);
   private RecordParser __parser;
@@ -346,23 +563,48 @@ this.readFields0(__dataIn);  }
     String __cur_str = null;
     try {
     __cur_str = __it.next();
-    if (__cur_str.equals("null") || __cur_str.length() == 0) { this.order_id = null; } else {
-      this.order_id = Integer.valueOf(__cur_str);
+    if (__cur_str.equals("null") || __cur_str.length() == 0) { this.customer_id = null; } else {
+      this.customer_id = Integer.valueOf(__cur_str);
     }
 
     __cur_str = __it.next();
-    if (__cur_str.equals("null") || __cur_str.length() == 0) { this.order_date = null; } else {
-      this.order_date = java.sql.Timestamp.valueOf(__cur_str);
+    if (__cur_str.equals("null")) { this.customer_fname = null; } else {
+      this.customer_fname = __cur_str;
     }
 
     __cur_str = __it.next();
-    if (__cur_str.equals("null") || __cur_str.length() == 0) { this.order_customer_id = null; } else {
-      this.order_customer_id = Integer.valueOf(__cur_str);
+    if (__cur_str.equals("null")) { this.customer_lname = null; } else {
+      this.customer_lname = __cur_str;
     }
 
     __cur_str = __it.next();
-    if (__cur_str.equals("null")) { this.order_status = null; } else {
-      this.order_status = __cur_str;
+    if (__cur_str.equals("null")) { this.customer_email = null; } else {
+      this.customer_email = __cur_str;
+    }
+
+    __cur_str = __it.next();
+    if (__cur_str.equals("null")) { this.customer_password = null; } else {
+      this.customer_password = __cur_str;
+    }
+
+    __cur_str = __it.next();
+    if (__cur_str.equals("null")) { this.customer_street = null; } else {
+      this.customer_street = __cur_str;
+    }
+
+    __cur_str = __it.next();
+    if (__cur_str.equals("null")) { this.customer_city = null; } else {
+      this.customer_city = __cur_str;
+    }
+
+    __cur_str = __it.next();
+    if (__cur_str.equals("null")) { this.customer_state = null; } else {
+      this.customer_state = __cur_str;
+    }
+
+    __cur_str = __it.next();
+    if (__cur_str.equals("null")) { this.customer_zipcode = null; } else {
+      this.customer_zipcode = __cur_str;
     }
 
     } catch (RuntimeException e) {    throw new RuntimeException("Can't parse input data: '" + __cur_str + "'", e);    }  }
@@ -371,51 +613,84 @@ this.readFields0(__dataIn);  }
     String __cur_str = null;
     try {
     __cur_str = __it.next();
-    if (__cur_str.equals("null") || __cur_str.length() == 0) { this.order_id = null; } else {
-      this.order_id = Integer.valueOf(__cur_str);
+    if (__cur_str.equals("null") || __cur_str.length() == 0) { this.customer_id = null; } else {
+      this.customer_id = Integer.valueOf(__cur_str);
     }
 
     __cur_str = __it.next();
-    if (__cur_str.equals("null") || __cur_str.length() == 0) { this.order_date = null; } else {
-      this.order_date = java.sql.Timestamp.valueOf(__cur_str);
+    if (__cur_str.equals("null")) { this.customer_fname = null; } else {
+      this.customer_fname = __cur_str;
     }
 
     __cur_str = __it.next();
-    if (__cur_str.equals("null") || __cur_str.length() == 0) { this.order_customer_id = null; } else {
-      this.order_customer_id = Integer.valueOf(__cur_str);
+    if (__cur_str.equals("null")) { this.customer_lname = null; } else {
+      this.customer_lname = __cur_str;
     }
 
     __cur_str = __it.next();
-    if (__cur_str.equals("null")) { this.order_status = null; } else {
-      this.order_status = __cur_str;
+    if (__cur_str.equals("null")) { this.customer_email = null; } else {
+      this.customer_email = __cur_str;
+    }
+
+    __cur_str = __it.next();
+    if (__cur_str.equals("null")) { this.customer_password = null; } else {
+      this.customer_password = __cur_str;
+    }
+
+    __cur_str = __it.next();
+    if (__cur_str.equals("null")) { this.customer_street = null; } else {
+      this.customer_street = __cur_str;
+    }
+
+    __cur_str = __it.next();
+    if (__cur_str.equals("null")) { this.customer_city = null; } else {
+      this.customer_city = __cur_str;
+    }
+
+    __cur_str = __it.next();
+    if (__cur_str.equals("null")) { this.customer_state = null; } else {
+      this.customer_state = __cur_str;
+    }
+
+    __cur_str = __it.next();
+    if (__cur_str.equals("null")) { this.customer_zipcode = null; } else {
+      this.customer_zipcode = __cur_str;
     }
 
     } catch (RuntimeException e) {    throw new RuntimeException("Can't parse input data: '" + __cur_str + "'", e);    }  }
 
   public Object clone() throws CloneNotSupportedException {
-    orders o = (orders) super.clone();
-    o.order_date = (o.order_date != null) ? (java.sql.Timestamp) o.order_date.clone() : null;
+    customers o = (customers) super.clone();
     return o;
   }
 
-  public void clone0(orders o) throws CloneNotSupportedException {
-    o.order_date = (o.order_date != null) ? (java.sql.Timestamp) o.order_date.clone() : null;
+  public void clone0(customers o) throws CloneNotSupportedException {
   }
 
   public Map<String, Object> getFieldMap() {
     Map<String, Object> __sqoop$field_map = new HashMap<String, Object>();
-    __sqoop$field_map.put("order_id", this.order_id);
-    __sqoop$field_map.put("order_date", this.order_date);
-    __sqoop$field_map.put("order_customer_id", this.order_customer_id);
-    __sqoop$field_map.put("order_status", this.order_status);
+    __sqoop$field_map.put("customer_id", this.customer_id);
+    __sqoop$field_map.put("customer_fname", this.customer_fname);
+    __sqoop$field_map.put("customer_lname", this.customer_lname);
+    __sqoop$field_map.put("customer_email", this.customer_email);
+    __sqoop$field_map.put("customer_password", this.customer_password);
+    __sqoop$field_map.put("customer_street", this.customer_street);
+    __sqoop$field_map.put("customer_city", this.customer_city);
+    __sqoop$field_map.put("customer_state", this.customer_state);
+    __sqoop$field_map.put("customer_zipcode", this.customer_zipcode);
     return __sqoop$field_map;
   }
 
   public void getFieldMap0(Map<String, Object> __sqoop$field_map) {
-    __sqoop$field_map.put("order_id", this.order_id);
-    __sqoop$field_map.put("order_date", this.order_date);
-    __sqoop$field_map.put("order_customer_id", this.order_customer_id);
-    __sqoop$field_map.put("order_status", this.order_status);
+    __sqoop$field_map.put("customer_id", this.customer_id);
+    __sqoop$field_map.put("customer_fname", this.customer_fname);
+    __sqoop$field_map.put("customer_lname", this.customer_lname);
+    __sqoop$field_map.put("customer_email", this.customer_email);
+    __sqoop$field_map.put("customer_password", this.customer_password);
+    __sqoop$field_map.put("customer_street", this.customer_street);
+    __sqoop$field_map.put("customer_city", this.customer_city);
+    __sqoop$field_map.put("customer_state", this.customer_state);
+    __sqoop$field_map.put("customer_zipcode", this.customer_zipcode);
   }
 
   public void setField(String __fieldName, Object __fieldVal) {
