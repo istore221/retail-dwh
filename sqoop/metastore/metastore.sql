@@ -32,6 +32,15 @@ CREATE TABLE `SQOOP_ROOT` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+CREATE TABLE `SQOOP_SESSIONS` (
+  `job_name` varchar(64) NOT NULL,
+  `propname` varchar(128) NOT NULL,
+  `propval` varchar(1024) DEFAULT NULL,
+  `propclass` varchar(32) NOT NULL,
+  UNIQUE KEY `SQOOP_SESSIONS_n_unq` (`job_name`,`propname`,`propclass`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
 --
 -- Dumping data for table `SQOOP_ROOT`
 --
