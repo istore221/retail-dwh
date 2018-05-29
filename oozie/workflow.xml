@@ -43,7 +43,7 @@
 			<arg>categories_pull</arg>
 			<arg>--</arg>
 			<arg>--target-dir</arg>
-			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/departments/imported_date=${year}-${month}-${day}</arg>
+			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/categories/imported_date=${year}-${month}-${day}</arg>
 		</sqoop>
 		<ok to="joining"/>
 		<error to="Kill"/>
@@ -61,7 +61,7 @@
 			<arg>products_pull</arg>
 			<arg>--</arg>
 			<arg>--target-dir</arg>
-			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/departments/imported_date=${year}-${month}-${day}</arg>
+			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/products/imported_date=${year}-${month}-${day}</arg>
 		</sqoop>
 		<ok to="joining"/>
 		<error to="Kill"/>
@@ -78,7 +78,7 @@
 			<arg>customers_pull</arg>
 			<arg>--</arg>
 			<arg>--target-dir</arg>
-			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/departments/imported_date=${year}-${month}-${day}</arg>
+			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/customers/imported_date=${year}-${month}-${day}</arg>
 		</sqoop>
 		<ok to="joining"/>
 		<error to="Kill"/>
