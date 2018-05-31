@@ -3,17 +3,9 @@
 
 <workflow-app name="online-store-wf"
 	xmlns="uri:oozie:workflow:0.5">
-	<start to="forkingSqoopImports"/>
+	<start to="sqoopImportDepartments"/>
 
-	<fork name="forkingSqoopImports">
-        <path start="sqoopImportDepartments"/>
-        <path start="sqoopImportCategories"/>
-				<path start="sqoopImportProducts"/>
-				<path start="sqoopImportCustomers"/>
-				<path start="sqoopImportOrders"/>
-				<path start="sqoopImportOrderItems"/>
-  </fork>
-
+	
 
 	<action name="sqoopImportDepartments">
 		<sqoop
@@ -28,7 +20,7 @@
 			<arg>--target-dir</arg>
 			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/departments/imported_date=${year}-${month}-${day}</arg>
 		</sqoop>
-		<ok to="joining"/>
+		<ok to="sqoopImportCategories"/>
 		<error to="Kill"/>
 	</action>
 
@@ -45,7 +37,7 @@
 			<arg>--target-dir</arg>
 			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/categories/imported_date=${year}-${month}-${day}</arg>
 		</sqoop>
-		<ok to="joining"/>
+		<ok to="sqoopImportProducts"/>
 		<error to="Kill"/>
 	</action>
 
@@ -63,7 +55,7 @@
 			<arg>--target-dir</arg>
 			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/products/imported_date=${year}-${month}-${day}</arg>
 		</sqoop>
-		<ok to="joining"/>
+		<ok to="sqoopImportCustomers"/>
 		<error to="Kill"/>
 	</action>
 
@@ -80,7 +72,7 @@
 			<arg>--target-dir</arg>
 			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/customers/imported_date=${year}-${month}-${day}</arg>
 		</sqoop>
-		<ok to="joining"/>
+		<ok to="sqoopImportOrders"/>
 		<error to="Kill"/>
 	</action>
 
@@ -98,7 +90,7 @@
 			<arg>--target-dir</arg>
 			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/orders/imported_date=${year}-${month}-${day}</arg>
 		</sqoop>
-		<ok to="joining"/>
+		<ok to="sqoopImportOrderItems"/>
 		<error to="Kill"/>
 	</action>
 
@@ -117,12 +109,11 @@
 			<arg>--target-dir</arg>
 			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/order_items/imported_date=${year}-${month}-${day}</arg>
 		</sqoop>
-		<ok to="joining"/>
+		<ok to="end"/>
 		<error to="Kill"/>
 	</action>
 
-	<join name="joining" to="end"/>
-
+	
 
 	<kill name="Kill">
 		<message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
