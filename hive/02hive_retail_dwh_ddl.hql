@@ -34,6 +34,30 @@ LOCATION '/user/${user.name}/warehouse/retail_edw/retail_dwh/dim_departments'
 TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_dwh/avro/retail_dwh_dim_departments.avsc');
 
 
+-- create 'customers', 'personal_info'
+-- alter 'customers', NAME=>'personal_info', VERSIONS=>3
+-- scan "customers"
+-- get 'customers', '100', {COLUMN => 'personal_info:customer_city', VERSIONS => 3}
+-- scan "customers",{VERSIONS => 3}
+-- put 'customers',100,'personal_info:customer_city','kandy'
+
+
+CREATE EXTERNAL TABLE dim_customers
+(
+ customer_id INT, 
+ customer_fname VARCHAR(45),
+ customer_lname VARCHAR(45),
+ customer_email VARCHAR(45),
+ customer_street VARCHAR(255),
+ customer_city VARCHAR(45),
+ customer_state VARCHAR(45),
+ customer_zipcode VARCHAR(45)
+ 
+) 
+STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' 
+WITH SERDEPROPERTIES ("hbase.columns.mapping"=":key,personal_info:customer_fname,personal_info:customer_lname,personal_info:customer_email,personal_info:customer_street,personal_info:customer_city,personal_info:customer_state,personal_info:customer_zipcode") 
+TBLPROPERTIES ("hbase.table.name"="customers");
+
 
 --hadoop fs -mkdir -p warehouse/retail_edw/retail_dwh/dim_products
 --hadoop fs -mkdir -p warehouse/retail_edw/retail_dwh/avro
