@@ -8,4 +8,11 @@ drop_part_column = FOREACH workon_part generate customer_id,customer_fname,custo
 
 STORE drop_part_column INTO 'hbase://customers'
        USING org.apache.pig.backend.hadoop.hbase.HBaseStorage(
-       'personal_info:customer_fname,personal_info:customer_lname,personal_info:customer_email,personal_info:customer_street,personal_info:customer_city,personal_info:customer_state,personal_info:customer_zipcode');
+       'personal_info:customer_fname,
+        personal_info:customer_lname,
+        personal_info:customer_email,
+        personal_info:customer_street,
+        personal_info:customer_city,
+        personal_info:customer_state,
+        personal_info:customer_zipcode'
+       );
