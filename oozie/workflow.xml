@@ -5,14 +5,19 @@
 	xmlns="uri:oozie:workflow:0.5">
 	<start to="sqoopImportDepartments"/>
 
-	
+
 
 	<action name="sqoopImportDepartments">
 		<sqoop
 			xmlns="uri:oozie:sqoop-action:0.2">
 			<job-tracker>${jobTracker}</job-tracker>
 			<name-node>${nameNode}</name-node>
-			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/sqoop-site.xml</job-xml>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/sqoop/sqoop-site.xml</job-xml>
+
+			<prepare>
+				<delete path="${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/departments/imported_date=${year}-${month}-${day}"/>
+			</prepare>
+
 			<arg>job</arg>
 			<arg>--exec</arg>
 			<arg>departments_pull</arg>
@@ -24,12 +29,18 @@
 		<error to="Kill"/>
 	</action>
 
+
 	<action name="sqoopImportCategories">
 		<sqoop
 			xmlns="uri:oozie:sqoop-action:0.2">
 			<job-tracker>${jobTracker}</job-tracker>
 			<name-node>${nameNode}</name-node>
-			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/sqoop-site.xml</job-xml>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/sqoop/sqoop-site.xml</job-xml>
+
+			<prepare>
+				<delete path="${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/categories/imported_date=${year}-${month}-${day}"/>
+			</prepare>
+
 			<arg>job</arg>
 			<arg>--exec</arg>
 			<arg>categories_pull</arg>
@@ -47,7 +58,12 @@
 			xmlns="uri:oozie:sqoop-action:0.2">
 			<job-tracker>${jobTracker}</job-tracker>
 			<name-node>${nameNode}</name-node>
-			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/sqoop-site.xml</job-xml>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/sqoop/sqoop-site.xml</job-xml>
+
+			<prepare>
+				<delete path="${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/products/imported_date=${year}-${month}-${day}"/>
+			</prepare>
+
 			<arg>job</arg>
 			<arg>--exec</arg>
 			<arg>products_pull</arg>
@@ -64,7 +80,12 @@
 			xmlns="uri:oozie:sqoop-action:0.2">
 			<job-tracker>${jobTracker}</job-tracker>
 			<name-node>${nameNode}</name-node>
-			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/sqoop-site.xml</job-xml>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/sqoop/sqoop-site.xml</job-xml>
+
+			<prepare>
+				<delete path="${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/customers/imported_date=${year}-${month}-${day}"/>
+			</prepare>
+
 			<arg>job</arg>
 			<arg>--exec</arg>
 			<arg>customers_pull</arg>
@@ -82,7 +103,12 @@
 			xmlns="uri:oozie:sqoop-action:0.2">
 			<job-tracker>${jobTracker}</job-tracker>
 			<name-node>${nameNode}</name-node>
-			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/sqoop-site.xml</job-xml>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/sqoop/sqoop-site.xml</job-xml>
+
+			<prepare>
+				<delete path="${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/orders/imported_date=${year}-${month}-${day}"/>
+			</prepare>
+
 			<arg>job</arg>
 			<arg>--exec</arg>
 			<arg>orders_pull</arg>
@@ -101,7 +127,13 @@
 			xmlns="uri:oozie:sqoop-action:0.2">
 			<job-tracker>${jobTracker}</job-tracker>
 			<name-node>${nameNode}</name-node>
-			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/sqoop-site.xml</job-xml>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/sqoop/sqoop-site.xml</job-xml>
+
+			<prepare>
+				<delete path="${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/order_items/imported_date=${year}-${month}-${day}"/>
+			</prepare>
+
+
 			<arg>job</arg>
 			<arg>--exec</arg>
 			<arg>order_items_pull</arg>
@@ -109,11 +141,43 @@
 			<arg>--target-dir</arg>
 			<arg>${nameNode}/user/${wf:user()}/warehouse/retail_edw/retail_stage/order_items/imported_date=${year}-${month}-${day}</arg>
 		</sqoop>
+		<ok to="metaUpdate"/>
+		<error to="Kill"/>
+	</action>
+
+
+	<action name="metaUpdate">
+
+		<hive2 xmlns="uri:oozie:hive2-action:0.1">
+					 <job-tracker>${jobTracker}</job-tracker>
+					 <name-node>${nameNode}</name-node>
+					 <jdbc-url>jdbc:hive2://sandbox-hdp.hortonworks.com:10000/retail_stage</jdbc-url>
+					 <script>/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/hive/retail_stage_metaupdate.hql</script>
+					 <param>imported_date=${year}-${month}-${day}</param>
+		</hive2>
+
+		<ok to="pigLoadDwhDepartments"/>
+		<error to="Kill"/>
+	</action>
+
+
+	<action name="pigLoadDwhDepartments">
+
+		<pig>
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/hive/hive-site.xml</job-xml>
+
+			<script>/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/pig/edw_load_departments.pig</script>
+			<param>imported_date=${year}-${month}-${day}</param>
+
+
+		</pig>
+
 		<ok to="end"/>
 		<error to="Kill"/>
 	</action>
 
-	
 
 	<kill name="Kill">
 		<message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>

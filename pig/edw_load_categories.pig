@@ -1,8 +1,8 @@
--- pig -param year=2013 -param month=05 -param day=12 -x mapreduce -useHCatalog  edw_load_categories.pig
+-- pig -param imported_date=2013-05-05 -x mapreduce -useHCatalog  edw_load_categories.pig
 
 staging_categories = LOAD 'retail_stage.categories' using org.apache.hive.hcatalog.pig.HCatLoader();
 
-workon_part = FILTER staging_categories BY imported_date == '$year-$month-$day';
+workon_part = FILTER staging_categories BY imported_date == '$imported_date';
 
 drop_part_column = FOREACH workon_part generate category_id,category_name;
 

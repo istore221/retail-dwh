@@ -1,4 +1,4 @@
--- pig -param year=2013 -param month=05 -param day=12 -x mapreduce -useHCatalog  edw_load_fact_sales.pig
+-- pig -param imported_date=2013-05-05 -x mapreduce -useHCatalog  edw_load_fact_sales.pig
 
 staging_orders = LOAD 'retail_stage.orders' using org.apache.hive.hcatalog.pig.HCatLoader();
 

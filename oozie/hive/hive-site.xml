@@ -1,0 +1,29 @@
+<configuration>
+
+  <property>
+    <name>javax.jdo.option.ConnectionPassword</name>
+    <value>hadoop</value>
+  </property>
+
+  <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>com.mysql.jdbc.Driver</value>
+  </property>
+
+  <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:mysql://sandbox-hdp.hortonworks.com/hive?createDatabaseIfNotExist=true</value>
+  </property>
+
+  <property>
+    <name>javax.jdo.option.ConnectionUserName</name>
+    <value>root</value>
+  </property>
+
+  <property>
+    <name>hive.metastore.uris</name>
+    <value>thrift://sandbox-hdp.hortonworks.com:9083</value>
+    <description>IP address (or fully-qualified domain name) and port of the metastore host</description>
+  </property>
+
+</configuration>
