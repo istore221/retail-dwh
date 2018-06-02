@@ -20,7 +20,7 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
 LOCATION '/user/${user.name}/warehouse/retail_edw/retail_stage/departments'
-TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_departments.avsc');
+TBLPROPERTIES ('avro.schema.url'='hdfs://sandbox-hdp.hortonworks.com:8020/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_departments.avsc');
 
 --hadoop fs -mkdir -p warehouse/retail_edw/retail_stage/categories
 --hadoop fs -mkdir -p warehouse/retail_edw/retail_stage/avro
@@ -35,7 +35,7 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
 LOCATION '/user/${user.name}/warehouse/retail_edw/retail_stage/categories'
-TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_categories.avsc');
+TBLPROPERTIES ('avro.schema.url'='hdfs://sandbox-hdp.hortonworks.com:8020/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_categories.avsc');
 
 
 --hadoop fs -mkdir -p warehouse/retail_edw/retail_stage/products
@@ -51,7 +51,7 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
 LOCATION '/user/${user.name}/warehouse/retail_edw/retail_stage/products'
-TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_products.avsc');
+TBLPROPERTIES ('avro.schema.url'='hdfs://sandbox-hdp.hortonworks.com:8020/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_products.avsc');
 
 
 
@@ -67,7 +67,7 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
 LOCATION '/user/${user.name}/warehouse/retail_edw/retail_stage/customers'
-TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_customers.avsc');
+TBLPROPERTIES ('avro.schema.url'='hdfs://sandbox-hdp.hortonworks.com:8020/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_customers.avsc');
 
 
 
@@ -83,7 +83,7 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
 LOCATION '/user/${user.name}/warehouse/retail_edw/retail_stage/orders'
-TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_orders.avsc');
+TBLPROPERTIES ('avro.schema.url'='hdfs://sandbox-hdp.hortonworks.com:8020/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_orders.avsc');
 
 
 
@@ -100,4 +100,4 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
 LOCATION '/user/${user.name}/warehouse/retail_edw/retail_stage/order_items'
-TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_order_items.avsc');
+TBLPROPERTIES ('avro.schema.url'='hdfs://sandbox-hdp.hortonworks.com:8020/user/${user.name}/warehouse/retail_edw/retail_stage/avro/retail_stage_order_items.avsc');
