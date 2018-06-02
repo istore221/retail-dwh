@@ -31,7 +31,7 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
 LOCATION '/user/${user.name}/warehouse/retail_edw/retail_dwh/dim_departments'
-TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_dwh/avro/retail_dwh_dim_departments.avsc');
+TBLPROPERTIES ('avro.schema.url'='hdfs://sandbox-hdp.hortonworks.com:8020/user/${user.name}/warehouse/retail_edw/retail_dwh/avro/retail_dwh_dim_departments.avsc');
 
 
 -- create 'customers', 'personal_info'
@@ -44,7 +44,7 @@ TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail
 
 CREATE EXTERNAL TABLE dim_customers
 (
- customer_id INT, 
+ customer_id INT,
  customer_fname VARCHAR(45),
  customer_lname VARCHAR(45),
  customer_email VARCHAR(45),
@@ -52,10 +52,10 @@ CREATE EXTERNAL TABLE dim_customers
  customer_city VARCHAR(45),
  customer_state VARCHAR(45),
  customer_zipcode VARCHAR(45)
- 
-) 
-STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' 
-WITH SERDEPROPERTIES ("hbase.columns.mapping"=":key,personal_info:customer_fname,personal_info:customer_lname,personal_info:customer_email,personal_info:customer_street,personal_info:customer_city,personal_info:customer_state,personal_info:customer_zipcode") 
+
+)
+STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+WITH SERDEPROPERTIES ("hbase.columns.mapping"=":key,personal_info:customer_fname,personal_info:customer_lname,personal_info:customer_email,personal_info:customer_street,personal_info:customer_city,personal_info:customer_state,personal_info:customer_zipcode")
 TBLPROPERTIES ("hbase.table.name"="customers");
 
 
@@ -84,7 +84,7 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
 LOCATION '/user/${user.name}/warehouse/retail_edw/retail_dwh/dim_products'
-TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_dwh/avro/retail_dwh_dim_products.avsc');
+TBLPROPERTIES ('avro.schema.url'='hdfs://sandbox-hdp.hortonworks.com:8020/user/${user.name}/warehouse/retail_edw/retail_dwh/avro/retail_dwh_dim_products.avsc');
 
 
 
@@ -115,7 +115,7 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
 LOCATION '/user/${user.name}/warehouse/retail_edw/retail_dwh/dim_categories'
-TBLPROPERTIES ('avro.schema.url'='/user/${user.name}/warehouse/retail_edw/retail_dwh/avro/retail_dwh_dim_categories.avsc');
+TBLPROPERTIES ('avro.schema.url'='hdfs://sandbox-hdp.hortonworks.com:8020/user/${user.name}/warehouse/retail_edw/retail_dwh/avro/retail_dwh_dim_categories.avsc');
 
 
 
@@ -137,9 +137,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS fact_sales(
   subtotal DECIMAL,
   category_id INT,
   category_name VARCHAR(45),
-  department_name VARCHAR(45),
-  customer_state VARCHAR(45),
-  customer_city VARCHAR(45)
+  department_name VARCHAR(45)
 )
 PARTITIONED BY (year STRING,month STRING,day STRING,department_id INT)
 ROW FORMAT DELIMITED
