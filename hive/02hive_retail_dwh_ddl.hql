@@ -137,7 +137,9 @@ CREATE EXTERNAL TABLE IF NOT EXISTS fact_sales(
   subtotal DECIMAL,
   category_id INT,
   category_name VARCHAR(45),
-  department_name VARCHAR(45)
+  department_name VARCHAR(45),
+  customer_state VARCHAR(45),
+  customer_city VARCHAR(45)
 )
 PARTITIONED BY (year STRING,month STRING,day STRING,department_id INT)
 ROW FORMAT DELIMITED
