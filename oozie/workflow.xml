@@ -149,11 +149,11 @@
 	<action name="metaUpdate">
 
 		<hive2 xmlns="uri:oozie:hive2-action:0.1">
-					 <job-tracker>${jobTracker}</job-tracker>
-					 <name-node>${nameNode}</name-node>
-					 <jdbc-url>jdbc:hive2://sandbox-hdp.hortonworks.com:10000/retail_stage</jdbc-url>
-					 <script>/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/hive/retail_stage_metaupdate.hql</script>
-					 <param>imported_date=${year}-${month}-${day}</param>
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<jdbc-url>jdbc:hive2://sandbox-hdp.hortonworks.com:10000/retail_stage</jdbc-url>
+			<script>/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/hive/retail_stage_metaupdate.hql</script>
+			<param>imported_date=${year}-${month}-${day}</param>
 		</hive2>
 
 		<ok to="pigLoadDwhDepartments"/>
@@ -174,9 +174,82 @@
 
 		</pig>
 
+		<ok to="pigLoadDwhCategories"/>
+		<error to="Kill"/>
+	</action>
+
+	<action name="pigLoadDwhCategories">
+
+		<pig>
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/hive/hive-site.xml</job-xml>
+
+			<script>/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/pig/edw_load_categories.pig</script>
+			<param>imported_date=${year}-${month}-${day}</param>
+
+
+		</pig>
+
+		<ok to="pigLoadDwhProducts"/>
+		<error to="Kill"/>
+	</action>
+
+
+	<action name="pigLoadDwhProducts">
+
+		<pig>
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/hive/hive-site.xml</job-xml>
+
+			<script>/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/pig/edw_load_products.pig</script>
+			<param>imported_date=${year}-${month}-${day}</param>
+
+
+		</pig>
+
+		<ok to="pigLoadDwhCustomers"/>
+		<error to="Kill"/>
+	</action>
+
+
+	<action name="pigLoadDwhCustomers">
+
+		<pig>
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/hive/hive-site.xml</job-xml>
+
+			<script>/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/pig/edw_load_customers.pig</script>
+			<param>imported_date=${year}-${month}-${day}</param>
+
+
+		</pig>
+
+		<ok to="pigLoadDwhFactSales"/>
+		<error to="Kill"/>
+	</action>
+
+
+	<action name="pigLoadDwhFactSales">
+
+		<pig>
+			<job-tracker>${jobTracker}</job-tracker>
+			<name-node>${nameNode}</name-node>
+			<job-xml>${nameNode}/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/hive/hive-site.xml</job-xml>
+
+			<script>/user/${wf:user()}/warehouse/retail_edw/share/workflows/retail-etl/pig/edw_load_fact_sales.pig</script>
+			<param>imported_date=${year}-${month}-${day}</param>
+
+
+		</pig>
+
 		<ok to="end"/>
 		<error to="Kill"/>
 	</action>
+
+	
 
 
 	<kill name="Kill">
